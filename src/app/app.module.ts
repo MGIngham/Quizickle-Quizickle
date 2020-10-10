@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { InitialFormComponent } from './create-quiz/initial-form/initial-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ColourPickerComponent } from './colour-picker/colour-picker.component';
+import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
 
 @NgModule({
   declarations: [
