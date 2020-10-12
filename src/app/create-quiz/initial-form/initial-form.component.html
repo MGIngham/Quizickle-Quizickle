@@ -1,21 +1,22 @@
 
-        <form (ngSubmit)="onAddQuiz()">
+        <form [formGroup]="newQuizForm" (ngSubmit)="onAddQuiz()">
             <div class="text-center form-group">
 
                 <div class="col-xs-6 col-xs-offset-3">
                     <label for="name">Give your quiz a name</label>
                     <input class="form-control" 
-                    type="text"/>
+                        type="text"
+                        formControlName="quizName"/>
                     <br>
+                    <div class="row">
                         <label for="colour">Select a colour theme</label>
-                        <div class="row">
-                            <div class="col-xs-2 col-md-offset-5">
-                                <a>
-                                    <div class="col" 
-                                        id="colour-picker-img"></div>
-                                </a>
-                            </div>
-                        </div>
+                    </div>
+                        <app-colour-picker [initialForm]="newQuizForm"></app-colour-picker>
+                        <app-standard-button 
+                            [setButtonText]="'Create a quiz'"
+                            [setButtonSize]="'l'"
+                            [isEnabled]=newQuizForm.valid>
+                        </app-standard-button>                
                 </div>
             </div>
         </form>

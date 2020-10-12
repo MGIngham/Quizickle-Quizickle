@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { InitialFormComponent } from './create-quiz/initial-form/initial-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
+import { StandardButtonComponent } from './standard-button/standard-button.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker
     FooterComponent,
     HomeComponent,
     InitialFormComponent,
-    ColourPickerComponent
+    ColourPickerComponent,
+    StandardButtonComponent
   ],
   imports: [
     BrowserModule,

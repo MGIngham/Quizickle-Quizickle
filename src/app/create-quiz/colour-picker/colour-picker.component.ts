@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-colour-picker',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColourPickerComponent implements OnInit {
 
+  @Input() initialForm: FormGroup;
+  
   colours = [
     "#FF5733",
     "#FFAB33",

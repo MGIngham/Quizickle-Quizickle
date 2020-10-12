@@ -1,1 +1,7 @@
-<p>colour-picker works!</p>
+        <div [formGroup]="initialForm" class="radio-inline" *ngFor="let colour of colours">
+                <input type="radio" [value]="colour" formControlName="backgroundColour"/>
+                <div class="colourBlock" [ngStyle]="{'background-color': colour}"></div>
+        </div>
+
+
+
