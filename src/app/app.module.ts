@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,6 +11,7 @@ import { InitialFormComponent } from './create-quiz/initial-form/initial-form.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
 import { StandardButtonComponent } from './standard-button/standard-button.component';
+import { CentralDataProvider } from './shared/services/central-data-provider.service';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,10 @@ import { StandardButtonComponent } from './standard-button/standard-button.compo
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CentralDataProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

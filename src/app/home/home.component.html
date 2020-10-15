@@ -2,7 +2,8 @@
         <div class="text-center">
             <app-standard-button [setButtonText]="'Create a quiz'"
                 [setButtonSize]="'l'"
-                (buttonClicked)="nagivateToCreateQuiz()">
+                (buttonClicked)="nagivateToCreateQuiz()"
+                [isEnabled]="true">
             </app-standard-button>
 </div>
 </div>
@@ -11,8 +12,10 @@
 </div>
  <div class="row">
         <div class="text-center">
-            <app-standard-button [setButtonText]="'Play a quiz'"
-                [setButtonSize]="'l'">
+            <app-standard-button 
+                [setButtonText]="'Play a quiz'"
+                [setButtonSize]="'l'"
+                [isEnabled]="true">
             </app-standard-button>        
         </div>
 </div>
