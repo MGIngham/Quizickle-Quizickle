@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
 import { StandardButtonComponent } from './standard-button/standard-button.component';
 import { CentralDataProvider } from './shared/services/central-data-provider.service';
+import { QuizBuilderContainerComponent } from './create-quiz/quiz-builder-container/quiz-builder-container.component';
+import { CreateQuizService } from './shared/services/create-quiz.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { CentralDataProvider } from './shared/services/central-data-provider.ser
     HomeComponent,
     InitialFormComponent,
     ColourPickerComponent,
-    StandardButtonComponent
+    StandardButtonComponent,
+    QuizBuilderContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { CentralDataProvider } from './shared/services/central-data-provider.ser
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [CentralDataProvider],
+  providers: [CentralDataProvider,CreateQuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

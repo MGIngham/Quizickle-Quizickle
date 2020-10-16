@@ -7,8 +7,15 @@ export class CreateQuizService {
 
     constructor(private dataService: CentralDataProvider){}
 
+    quizId: number;
+
     addQuiz(quiz: Quiz) {
-        this.dataService.saveQuiz(quiz);
+        this.dataService.saveQuiz(quiz)
+        .subscribe(response => {
+            this.quizId = response['id'];
+        });
     }
+
+    
 
 }
