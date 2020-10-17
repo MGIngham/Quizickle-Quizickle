@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
 
@@ -8,15 +9,15 @@ import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
   templateUrl: './initial-form.component.html',
   styleUrls: ['./initial-form.component.css']
 })
-export class InitialFormComponent implements OnInit {
+export class InitialFormComponent implements OnInit, OnDestroy {
 
   httpErrorState: Subscription;
   isValidResponse: Subscription;
   isHttpError: boolean;
-  routeNavigationIsOk: boolean = false;
   newQuizForm: FormGroup;
 
-  constructor(private creatQuizService: CreateQuizService) { }
+  constructor(private creatQuizService: CreateQuizService, 
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -28,7 +29,7 @@ export class InitialFormComponent implements OnInit {
     this.isValidResponse = this.creatQuizService.validHttpResponse
     .subscribe(valid => {
       if(valid) {
-        
+        this.router.navigate(['/quiz-builder/', this.creatQuizService.quiz.id])
       }
     })
 
@@ -41,6 +42,11 @@ export class InitialFormComponent implements OnInit {
 
   onAddQuiz() {
     this.creatQuizService.addQuiz(this.newQuizForm.value);
+  }
+
+  ngOnDestroy(){
+    this.isValidResponse.unsubscribe();
+    this.httpErrorState.unsubscribe();
   }
 
 }
