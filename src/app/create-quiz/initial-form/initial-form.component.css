@@ -2,3 +2,7 @@
     background-color: darkgreen;
     height: 50px;
 }
+
+.errorText {
+    color: rgb(187, 40, 3);
+}
