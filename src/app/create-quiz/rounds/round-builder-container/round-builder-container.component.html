@@ -1,5 +1,21 @@
-<div *ngFor="let round in createQuizService.roundsReferenceArray | async">
-    {{round.roundNumber}} And this is a round
+<div *ngIf="httpErrorState == false">
+    <div *ngFor="let round of rounds">
+        {{round.roundNumber}} And this is a round
+    </div>
 </div>
+<div *ngIf="httpErrorState == true">
+    <p class="errorText">Oh no! Something went wrong! Please try again later.</p>
+</div>
+<div *ngIf="rounds.length == 0">
+    <p>Loading...</p>
+</div>
+<div *ngIf="rounds.length > 0">
+    <app-standard-button [setButtonText]="'Add new round'"
+        [setButtonSize]="'l'"
+        (buttonClicked)="addRound()"
+        [isEnabled]="true">
+    </app-standard-button>
+</div>
+
 
 
