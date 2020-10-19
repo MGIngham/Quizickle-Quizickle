@@ -14,6 +14,7 @@ import { StandardButtonComponent } from './standard-button/standard-button.compo
 import { CentralDataProvider } from './shared/services/central-data-provider.service';
 import { QuizBuilderContainerComponent } from './create-quiz/quiz-builder-container/quiz-builder-container.component';
 import { CreateQuizService } from './shared/services/create-quiz.service';
+import { RoundBuilderContainerComponent } from './create-quiz/rounds/round-builder-container/round-builder-container.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CreateQuizService } from './shared/services/create-quiz.service';
     InitialFormComponent,
     ColourPickerComponent,
     StandardButtonComponent,
-    QuizBuilderContainerComponent
+    QuizBuilderContainerComponent,
+    RoundBuilderContainerComponent
   ],
   imports: [
     BrowserModule,
