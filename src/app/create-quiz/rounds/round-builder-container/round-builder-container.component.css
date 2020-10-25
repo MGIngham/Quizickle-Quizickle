@@ -1,3 +1,7 @@
 .errorText {
     color: rgb(187, 40, 3);
 }
+
+#roundsContainer {
+    margin-top: 20px;
+}

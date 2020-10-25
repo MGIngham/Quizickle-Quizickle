@@ -1,21 +1,19 @@
-<div *ngIf="httpErrorState == false">
+<div id="roundsContainer">
+    <div *ngIf="rounds.length > 0">
+        <app-standard-button [setButtonText]="'Add new round'"
+            [setButtonSize]="'s'"
+            (buttonClicked)="addRound()"
+            [isEnabled]="true">
+        </app-standard-button>
+    </div>
     <div *ngFor="let round of rounds">
-        {{round.roundNumber}} And this is a round
+        <app-round [round]="round"></app-round>
+    </div>
+    <div *ngIf="rounds.length == 0">
+        <p>Loading...</p>
     </div>
 </div>
-<div *ngIf="httpErrorState == true">
-    <p class="errorText">Oh no! Something went wrong! Please try again later.</p>
-</div>
-<div *ngIf="rounds.length == 0">
-    <p>Loading...</p>
-</div>
-<div *ngIf="rounds.length > 0">
-    <app-standard-button [setButtonText]="'Add new round'"
-        [setButtonSize]="'l'"
-        (buttonClicked)="addRound()"
-        [isEnabled]="true">
-    </app-standard-button>
-</div>
+
 
 
 

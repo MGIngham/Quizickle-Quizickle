@@ -21,11 +21,6 @@ export class InitialFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.httpErrorState = this.creatQuizService.httpErrorState
-    .subscribe(isError => {
-      this.isHttpError = isError;
-    })
-
     this.isValidResponse = this.creatQuizService.validHttpResponse
     .subscribe(valid => {
       if(valid) {
@@ -46,7 +41,6 @@ export class InitialFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.isValidResponse.unsubscribe();
-    this.httpErrorState.unsubscribe();
   }
 
 }

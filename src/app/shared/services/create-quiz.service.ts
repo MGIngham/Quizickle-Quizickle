@@ -11,6 +11,7 @@ export class CreateQuizService {
 
     //Oh no HTTP returned an error, display error text in compontent. 
     httpErrorState: Subject<boolean> = new Subject<boolean>();
+    errorText: Subject<string> = new Subject<string>();
     //Wait... don't proceed unti HTTP response has been received and this becomes true. 
     validHttpResponse: Subject<boolean> = new Subject<boolean>();
     //This hold the quiz object that all rounds and questions will be associated with. 
@@ -31,6 +32,7 @@ export class CreateQuizService {
         },
         (error) => {
             this.httpErrorState.next(true);
+            this.errorText.next("Oh no something went wrong :( Please try and create your quiz again!");
         });
     }
 
@@ -48,6 +50,14 @@ export class CreateQuizService {
         },
         (error) => {
             this.httpErrorState.next(true);
+            this.errorText.next("Oh no something went wrong!");
+        })
+    }
+
+    updateRound(round: Round, id: number) {
+        this.dataService.updateRound(round, id)
+        .subscribe(response => {
+            console.log(response);
         })
     }
 

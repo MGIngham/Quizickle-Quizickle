@@ -23,11 +23,6 @@ export class RoundBuilderContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.httpError = this.createQuizService.httpErrorState
-    .subscribe(isError => {
-      this.httpErrorState = isError;
-    })
-
     //quizId set at 30 for testing!!!
     this.quizId = this.createQuizService.quiz.id;
     //this.quizId = 30;
@@ -45,7 +40,6 @@ export class RoundBuilderContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.httpError.unsubscribe();
     this.roundsSubject.unsubscribe();
   }
 

@@ -1,0 +1,24 @@
+<div class="row" class="roundInfo">
+        <div class="col-xs-3">
+            <p>Round {{ round.roundNumber }} : {{ roundDisplayName }}</p>
+        </div>
+        <div class="col-xs-9" *ngIf="editRoundName">
+            <form [formGroup]="updateRoundName" (ngSubmit)="updateName()">
+                <input formControlName="roundName" type="text" placeholder="Name your round">
+                <button type="submit">Go</button>
+            </form>
+        </div>
+        <div *ngIf="!editRoundName">
+            <button (click)="toggleEditRoundName()">Edit</button>
+        </div>
+</div>
+<div class="row" class="roundQuestions">
+        <div class="col-xs-3">
+            <button>
+                +
+            </button>
+            <button>
+                Expand
+            </button>
+        </div>
+</div>

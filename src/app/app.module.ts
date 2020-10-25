@@ -15,6 +15,9 @@ import { CentralDataProvider } from './shared/services/central-data-provider.ser
 import { QuizBuilderContainerComponent } from './create-quiz/quiz-builder-container/quiz-builder-container.component';
 import { CreateQuizService } from './shared/services/create-quiz.service';
 import { RoundBuilderContainerComponent } from './create-quiz/rounds/round-builder-container/round-builder-container.component';
+import { RoundComponent } from './create-quiz/rounds/round/round.component';
+import { ErrorContainerComponent } from './error-container/error-container.component';
+import { AppButtonDirective } from './app-button.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { RoundBuilderContainerComponent } from './create-quiz/rounds/round-build
     ColourPickerComponent,
     StandardButtonComponent,
     QuizBuilderContainerComponent,
-    RoundBuilderContainerComponent
+    RoundBuilderContainerComponent,
+    RoundComponent,
+    ErrorContainerComponent,
+    AppButtonDirective
   ],
   imports: [
     BrowserModule,
