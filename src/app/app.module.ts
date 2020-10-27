@@ -17,7 +17,10 @@ import { RoundBuilderContainerComponent } from './create-quiz/rounds/round-build
 import { RoundComponent } from './create-quiz/rounds/round/round.component';
 import { ErrorContainerComponent } from './error-container/error-container.component';
 import { AppButtonDirective } from './app-button.directive';
-import { QuestionBuilderContainerComponent } from './questions/question-builder-container/question-builder-container.component';
+import { QuestionBuilderContainerComponent } from './create-quiz/questions/question-builder-container/question-builder-container.component';
+import { QuestionMultipleChoiceFormComponent } from './create-quiz/questions/question-multiple-choice-form/question-multiple-choice-form.component';
+import { QuestionTrueFalseFormComponent } from './create-quiz/questions/question-true-false-form/question-true-false-form.component';
+import { QuestionTextFormComponent } from './create-quiz/questions/question-text-form/question-text-form.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { QuestionBuilderContainerComponent } from './questions/question-builder-
     QuestionBuilderContainerComponent,
     RoundComponent,
     ErrorContainerComponent,
-    AppButtonDirective
+    AppButtonDirective,
+    QuestionMultipleChoiceFormComponent,
+    QuestionTrueFalseFormComponent,
+    QuestionTextFormComponent
   ],
   imports: [
     BrowserModule,

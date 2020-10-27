@@ -21,7 +21,6 @@ export class CreateQuizService {
     roundsReferenceArray: Subject<Round[]> = new Subject<Round[]>();
 
     //These properties pass data from the rounds builder into the question builder. 
-    showQuestionBuilder: Subject<boolean> = new Subject<boolean>();
     roundNumber: Subject<number> = new Subject<number>();
 
     //Manage Quiz methods
@@ -69,8 +68,6 @@ export class CreateQuizService {
 
     initiateQuestionBuilder(roundNum: number) {
         this.roundNumber.next(roundNum);
-        this.showQuestionBuilder.next(true);
-        console.log(roundNum);
     }
 
     

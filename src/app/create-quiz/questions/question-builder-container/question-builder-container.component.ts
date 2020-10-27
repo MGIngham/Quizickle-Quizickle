@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
 
@@ -7,13 +7,12 @@ import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
   templateUrl: './question-builder-container.component.html',
   styleUrls: ['./question-builder-container.component.css']
 })
-export class QuestionBuilderContainerComponent implements OnInit {
+export class QuestionBuilderContainerComponent implements OnInit, OnDestroy {
 
   subRoundNum: Subscription;
-  subShowQuestionQuestionBuilder: Subscription;
-
   roundNum: number;
-  showQuestionBuilder: boolean = false;
+  showQuestionTypes: boolean = true;
+  questionType: number;
 
   constructor(private createQuizService: CreateQuizService) { }
 
@@ -22,12 +21,20 @@ export class QuestionBuilderContainerComponent implements OnInit {
     .subscribe(num => {
       this.roundNum = num;
     })
+  }
 
-    this.subShowQuestionQuestionBuilder = this.createQuizService.showQuestionBuilder
-    .subscribe(show => {
-      this.showQuestionBuilder = show;
-      console.log(this.showQuestionBuilder);
-    })
+  loadQuestionTemplate(questionType: number) {
+    this.showQuestionTypes = false;
+    this.questionType = questionType;
+  }
+
+  backToTypes() {
+    this.showQuestionTypes = true;
+    this.questionType = 0;
+  }
+
+  ngOnDestroy() {
+    this.subRoundNum.unsubscribe();
   }
 
 }
