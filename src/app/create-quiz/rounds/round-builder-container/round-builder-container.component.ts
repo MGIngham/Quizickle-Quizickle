@@ -24,8 +24,8 @@ export class RoundBuilderContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     //quizId set at 30 for testing!!!
-    this.quizId = this.createQuizService.quiz.id;
-    //this.quizId = 30;
+    //this.quizId = this.createQuizService.quiz.id;
+    this.quizId = 31;
 
     this.createQuizService.roundsReferenceArray
     .subscribe(rounds => {

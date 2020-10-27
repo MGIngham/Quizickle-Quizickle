@@ -1,10 +1,10 @@
 <div id="roundsContainer">
     <div *ngIf="rounds.length > 0">
-        <app-standard-button [setButtonText]="'Add new round'"
-            [setButtonSize]="'s'"
-            (buttonClicked)="addRound()"
-            [isEnabled]="true">
-        </app-standard-button>
+        <button appAppButton
+                (click)="addRound()"
+                class="btn btn-sm">
+            Add new round
+        </button>
     </div>
     <div *ngFor="let round of rounds">
         <app-round [round]="round"></app-round>

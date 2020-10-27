@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { InitialFormComponent } from './create-quiz/initial-form/initial-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
-import { StandardButtonComponent } from './standard-button/standard-button.component';
 import { CentralDataProvider } from './shared/services/central-data-provider.service';
 import { QuizBuilderContainerComponent } from './create-quiz/quiz-builder-container/quiz-builder-container.component';
 import { CreateQuizService } from './shared/services/create-quiz.service';
@@ -18,6 +17,7 @@ import { RoundBuilderContainerComponent } from './create-quiz/rounds/round-build
 import { RoundComponent } from './create-quiz/rounds/round/round.component';
 import { ErrorContainerComponent } from './error-container/error-container.component';
 import { AppButtonDirective } from './app-button.directive';
+import { QuestionBuilderContainerComponent } from './questions/question-builder-container/question-builder-container.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +27,9 @@ import { AppButtonDirective } from './app-button.directive';
     HomeComponent,
     InitialFormComponent,
     ColourPickerComponent,
-    StandardButtonComponent,
     QuizBuilderContainerComponent,
     RoundBuilderContainerComponent,
+    QuestionBuilderContainerComponent,
     RoundComponent,
     ErrorContainerComponent,
     AppButtonDirective

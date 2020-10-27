@@ -11,12 +11,12 @@
                     <div class="row">
                         <label for="colour">Select a colour theme</label>
                     </div>
-                        <app-colour-picker [initialForm]="newQuizForm"></app-colour-picker>
-                        <app-standard-button 
-                            [setButtonText]="'Create a quiz'"
-                            [setButtonSize]="'l'"
-                            [isEnabled]=newQuizForm.valid>
-                        </app-standard-button>             
+                        <app-colour-picker [initialForm]="newQuizForm"></app-colour-picker>    
+                        <button appAppButton
+                                class="btn btn-lg"
+                                [disabled]="newQuizForm.valid">
+                                Create quiz
+                        </button>       
                 </div>
             </div>
         </form>

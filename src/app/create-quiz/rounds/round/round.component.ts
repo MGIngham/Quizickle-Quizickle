@@ -36,4 +36,8 @@ export class RoundComponent implements OnInit {
     this.editRoundName = true;
   }
 
+  newQuestion(roundNum: number) {
+    this.createQuizService.initiateQuestionBuilder(roundNum);
+  }
+
 }

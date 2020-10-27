@@ -20,6 +20,10 @@ export class CreateQuizService {
     rounds: Round[] = [];
     roundsReferenceArray: Subject<Round[]> = new Subject<Round[]>();
 
+    //These properties pass data from the rounds builder into the question builder. 
+    showQuestionBuilder: Subject<boolean> = new Subject<boolean>();
+    roundNumber: Subject<number> = new Subject<number>();
+
     //Manage Quiz methods
     addQuiz(quiz: Quiz) {
         this.dataService.saveQuiz(quiz)
@@ -38,7 +42,7 @@ export class CreateQuizService {
 
     //Manage Round methods
     addRound(round: Round) {
-        this.dataService.saveRound(round)
+        /*this.dataService.saveRound(round)
         .subscribe(response => {
             this.rounds.push(response);
             this.roundsReferenceArray.next(this.rounds.slice());
@@ -51,7 +55,9 @@ export class CreateQuizService {
         (error) => {
             this.httpErrorState.next(true);
             this.errorText.next("Oh no something went wrong!");
-        })
+        })*/
+        this.rounds.push(round);
+        this.roundsReferenceArray.next(this.rounds.slice());
     }
 
     updateRound(round: Round, id: number) {
@@ -59,6 +65,12 @@ export class CreateQuizService {
         .subscribe(response => {
             console.log(response);
         })
+    }
+
+    initiateQuestionBuilder(roundNum: number) {
+        this.roundNumber.next(roundNum);
+        this.showQuestionBuilder.next(true);
+        console.log(roundNum);
     }
 
     
