@@ -1,16 +1,25 @@
-<div *ngIf="roundNum" id="questionBuilderContainer">
-    <div *ngIf="showQuestionTypes">
-        <ul class="list-group">
-            <a (click)="loadQuestionTemplate(1)">
-                <li class="list-group-item">Multiple choice</li>
-            </a>
-            <a (click)="loadQuestionTemplate(2)">
-                <li class="list-group-item">Text</li>
-            </a>        
-            <a (click)="loadQuestionTemplate(3)">
-                <li class="list-group-item">True/False</li>
-            </a>
-        </ul>
+<div *ngIf="childComponentsAreVisible" id="questionBuilderContainer">
+    <div class="cancel-button row">
+        <div class="col-xs-12">
+            <button (click)="cancelQuestion(false)">
+                Cancel
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngIf="showQuestionTypes" class="col-xs-12">
+            <ul class="list-group">
+                <a (click)="loadQuestionTemplate(1)">
+                    <li class="list-group-item">Multiple choice</li>
+                </a>
+                <a (click)="loadQuestionTemplate(2)">
+                    <li class="list-group-item">Text</li>
+                </a>        
+                <a (click)="loadQuestionTemplate(3)">
+                    <li class="list-group-item">True/False</li>
+                </a>
+            </ul>
+        </div>
     </div>
 
     <div [ngSwitch]="questionType">

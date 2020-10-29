@@ -14,7 +14,8 @@
 </div>
 <div class="row" class="roundQuestions">
         <div class="col-xs-3">
-            <button (click)="newQuestion(round.roundNumber)">
+            <button (click)="newQuestion(round.roundNumber)"
+                    [disabled]="addButtonEnabled">
                 +
             </button>
             <button>

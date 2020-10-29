@@ -14,14 +14,17 @@ export class CreateQuizService {
     errorText: Subject<string> = new Subject<string>();
     //Wait... don't proceed unti HTTP response has been received and this becomes true. 
     validHttpResponse: Subject<boolean> = new Subject<boolean>();
+    
     //This hold the quiz object that all rounds and questions will be associated with. 
     quiz: Quiz;
 
+    //These properties pass data from the rounds builder into the question builder. 
     rounds: Round[] = [];
     roundsReferenceArray: Subject<Round[]> = new Subject<Round[]>();
-
-    //These properties pass data from the rounds builder into the question builder. 
     roundNumber: Subject<number> = new Subject<number>();
+
+    //These properties will manage the question builder
+    questionInEditMode: Subject<boolean> = new Subject<boolean>();
 
     //Manage Quiz methods
     addQuiz(quiz: Quiz) {
@@ -66,8 +69,16 @@ export class CreateQuizService {
         })
     }
 
+    //Question builder methods
     initiateQuestionBuilder(roundNum: number) {
         this.roundNumber.next(roundNum);
+    }
+
+    /*If questionInEditMode emits true then question builder 
+    components are visible and a new question cannot be started
+    until the current question is saved or cancelled.*/
+    questionBuilderIsInEditMode(toggleEdit: boolean) {
+        this.questionInEditMode.next(toggleEdit);
     }
 
     

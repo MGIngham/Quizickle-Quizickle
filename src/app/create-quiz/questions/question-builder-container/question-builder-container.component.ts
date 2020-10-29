@@ -10,9 +10,11 @@ import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
 export class QuestionBuilderContainerComponent implements OnInit, OnDestroy {
 
   subRoundNum: Subscription;
+  subQuestionIsInEditMode: Subscription
   roundNum: number;
   showQuestionTypes: boolean = true;
   questionType: number;
+  childComponentsAreVisible: boolean = false;
 
   constructor(private createQuizService: CreateQuizService) { }
 
@@ -20,6 +22,11 @@ export class QuestionBuilderContainerComponent implements OnInit, OnDestroy {
     this.subRoundNum = this.createQuizService.roundNumber
     .subscribe(num => {
       this.roundNum = num;
+    })
+
+    this.subQuestionIsInEditMode = this.createQuizService.questionInEditMode
+    .subscribe(isEditMode => {
+      this.childComponentsAreVisible = isEditMode;
     })
   }
 
@@ -33,8 +40,17 @@ export class QuestionBuilderContainerComponent implements OnInit, OnDestroy {
     this.questionType = 0;
   }
 
+  cancelQuestion(areVisible: boolean) {
+    let confirmCancel = confirm("Hola, just to say, if you cancel this question then it won't be saved.")
+    
+    if(confirmCancel == true) {
+      this.createQuizService.questionBuilderIsInEditMode(areVisible);
+    }
+  }
+
   ngOnDestroy() {
     this.subRoundNum.unsubscribe();
+    this.subQuestionIsInEditMode.unsubscribe();
   }
 
 }
