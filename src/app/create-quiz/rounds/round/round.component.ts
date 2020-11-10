@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Subscribable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Question } from 'src/app/shared/models/question.model';
 import { Round } from 'src/app/shared/models/round.model';
 import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
 
@@ -15,11 +16,12 @@ export class RoundComponent implements OnInit, OnDestroy {
   @Input() round: Round;
 
   subscription: Subscription;
+  questions: Question[];
 
   updateRoundName: FormGroup;
   roundDisplayName: string;
   editRoundName: boolean = true;
-  addButtonEnabled: boolean = false;
+  addButtonEnabled: Observable<boolean>;
 
   constructor(private createQuizService: CreateQuizService) { }
 
@@ -28,9 +30,11 @@ export class RoundComponent implements OnInit, OnDestroy {
       "roundName": new FormControl("")
     });
 
-    this.subscription = this.createQuizService.questionInEditMode
-    .subscribe(isEditMode => {
-      this.addButtonEnabled = isEditMode;
+    this.addButtonEnabled = this.createQuizService.questionInEditMode.asObservable();
+
+    this.subscription = this.createQuizService.questionsReferenceArray
+    .subscribe(questions => {
+        this.questions = questions;
     })
   }
 
@@ -51,7 +55,7 @@ export class RoundComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+
   }
 
 }

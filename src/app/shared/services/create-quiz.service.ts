@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Question } from '../models/question.model';
 import { Quiz } from '../models/quiz.model';
 import { Round } from '../models/round.model';
 import { CentralDataProvider } from './central-data-provider.service';
@@ -25,6 +26,8 @@ export class CreateQuizService {
 
     //These properties will manage the question builder
     questionInEditMode: Subject<boolean> = new Subject<boolean>();
+    questions: Question[] = [];
+    questionsReferenceArray: Subject<Question[]> = new Subject<Question[]>();
 
     //Manage Quiz methods
     addQuiz(quiz: Quiz) {
@@ -44,7 +47,7 @@ export class CreateQuizService {
 
     //Manage Round methods
     addRound(round: Round) {
-        /*this.dataService.saveRound(round)
+        this.dataService.saveRound(round)
         .subscribe(response => {
             this.rounds.push(response);
             this.roundsReferenceArray.next(this.rounds.slice());
@@ -57,9 +60,9 @@ export class CreateQuizService {
         (error) => {
             this.httpErrorState.next(true);
             this.errorText.next("Oh no something went wrong!");
-        })*/
-        this.rounds.push(round);
-        this.roundsReferenceArray.next(this.rounds.slice());
+        })
+        //this.rounds.push(round);
+        //this.roundsReferenceArray.next(this.rounds.slice());
     }
 
     updateRound(round: Round, id: number) {
@@ -79,6 +82,21 @@ export class CreateQuizService {
     until the current question is saved or cancelled.*/
     questionBuilderIsInEditMode(toggleEdit: boolean) {
         this.questionInEditMode.next(toggleEdit);
+    }
+
+    addQuestion(question: Question) {
+        this.dataService.saveQuestion(question)
+        .subscribe(response => {
+            if(response) {
+                this.validHttpResponse.next(true);
+                this.questions.push(question);
+                this.questionsReferenceArray.next(this.questions.slice());
+            }
+        },
+        (error) => {
+            this.httpErrorState.next(true);
+            this.errorText.next("Oh no something went wrong!");
+        })
     }
 
     

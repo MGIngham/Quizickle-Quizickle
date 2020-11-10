@@ -2,7 +2,7 @@ export class Question {
 
     id?: number;
     quizId: number;
-    questionNumber: number;
+    roundNumber: number;
     questionType: number;
     questionText: string;
     isTrueFalse: boolean;
@@ -12,23 +12,22 @@ export class Question {
     optionThree: string;
 
     constructor(quizId: number,
-        questionNumber: number,
+        roundNumber: number,
         questionType: number,
         questionText: string,
-        isTrueFalse: boolean,
         answerText: string,
+        isTrueFalse: boolean,
         optionOne: string,
         optionTwo: string,
         optionThree: string) {
             this.quizId = quizId;
-            this.questionNumber = questionNumber;
+            this.roundNumber = roundNumber;
             this.questionType = questionType;
             this.questionText = questionText;
-            this.isTrueFalse = isTrueFalse;
             this.answerText = answerText;
+            this.isTrueFalse = isTrueFalse;
             this.optionOne = optionOne;
             this.optionTwo = optionTwo;
             this.optionThree = optionThree;
-
     }
 }

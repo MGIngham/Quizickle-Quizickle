@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question-multiple-choice-form',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class QuestionMultipleChoiceFormComponent implements OnInit {
 
-  @Input() roundNumber: number;
+  @Input() questionForm: FormGroup;
 
   constructor() { }
 

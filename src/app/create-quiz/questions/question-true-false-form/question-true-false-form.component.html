@@ -1,1 +1,12 @@
-<p>question-true-false-form works!</p>
+<div [formGroup]="questionForm" class="form-group">
+    <label>True</label>
+    <input
+            type="radio"
+            formControlName="isTrueFalse"
+            [value]=true>
+    <label>False</label>
+    <input 
+            type="radio"
+            formControlName="isTrueFalse"
+            [value]=false>
+</div>

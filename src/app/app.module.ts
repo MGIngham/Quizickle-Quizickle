@@ -21,6 +21,7 @@ import { QuestionBuilderContainerComponent } from './create-quiz/questions/quest
 import { QuestionMultipleChoiceFormComponent } from './create-quiz/questions/question-multiple-choice-form/question-multiple-choice-form.component';
 import { QuestionTrueFalseFormComponent } from './create-quiz/questions/question-true-false-form/question-true-false-form.component';
 import { QuestionTextFormComponent } from './create-quiz/questions/question-text-form/question-text-form.component';
+import { FilterQuestionsPipe } from './shared/pipes/filter-questions.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { QuestionTextFormComponent } from './create-quiz/questions/question-text
     AppButtonDirective,
     QuestionMultipleChoiceFormComponent,
     QuestionTrueFalseFormComponent,
-    QuestionTextFormComponent
+    QuestionTextFormComponent,
+    FilterQuestionsPipe
   ],
   imports: [
     BrowserModule,

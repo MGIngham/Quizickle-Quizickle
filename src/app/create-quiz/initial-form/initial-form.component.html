@@ -14,7 +14,7 @@
                         <app-colour-picker [initialForm]="newQuizForm"></app-colour-picker>    
                         <button appAppButton
                                 class="btn btn-lg"
-                                [disabled]="newQuizForm.valid">
+                                [disabled]="!newQuizForm.valid">
                                 Create quiz
                         </button>       
                 </div>

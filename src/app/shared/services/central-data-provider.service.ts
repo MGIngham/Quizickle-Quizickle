@@ -4,6 +4,7 @@ import { Quiz } from '../models/quiz.model';
 import { Round } from '../models/round.model';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Question } from '../models/question.model';
 
 @Injectable({providedIn: 'root'})
 export class CentralDataProvider {
@@ -49,7 +50,23 @@ export class CentralDataProvider {
         return this.http.put(this.baseUri + "rounds/" + id, round, this.httpOptions);
     }
 
+    //HTTP methods for questions
+    saveQuestion(question: Question) {
+        return this.http.post<Question>(this.baseUri + "questions", question, this.httpOptions)
+        .pipe(
+            catchError(this.handleError)
+        );
+    }
+    
+    getQuestionsByQuizId(quizId: string) {
+        return this.http.get<Question[]>(this.baseUri + "questions/quiz/" + quizId)
+    }
+
+
+
     handleError(error: HttpErrorResponse) {
         return throwError(error);
     }
+
+
 }

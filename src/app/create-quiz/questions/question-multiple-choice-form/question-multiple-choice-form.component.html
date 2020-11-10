@@ -1,1 +1,20 @@
-<p>question-multiple-choice-form works! {{roundNumber}}</p>
+<div [formGroup]="questionForm" class="form-group">
+    <strong>Answers will be displayed in a random order to the player.</strong>
+    <br>
+    <label>Correct answer</label>
+    <input class="form-control" 
+            type="text"
+            formControlName="answerText">
+    <label>Option one</label>
+    <input class="form-control" 
+            type="text"
+            formControlName="optionOne">
+    <label>Option two</label>
+    <input class="form-control" 
+            type="text"
+            formControlName="optionTwo">
+    <label>Option three</label>
+    <input class="form-control" 
+            type="text"
+            formControlName="optionThree">
+</div>

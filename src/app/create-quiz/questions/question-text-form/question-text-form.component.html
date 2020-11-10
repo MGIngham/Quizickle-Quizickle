@@ -1,1 +1,7 @@
-<p>question-text-form works!</p>
+<div [formGroup]="questionForm" class="form-group">
+    <label>Answer</label>
+    <input class="form-control" 
+            type="text"
+            formControlName="answerText">
+</div>
+

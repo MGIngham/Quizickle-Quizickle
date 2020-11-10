@@ -1,4 +1,4 @@
-<div *ngIf="childComponentsAreVisible" id="questionBuilderContainer">
+<div *ngIf="subQuestionIsInEditMode | async" id="questionBuilderContainer">
     <div class="cancel-button row">
         <div class="col-xs-12">
             <button (click)="cancelQuestion(false)">
@@ -9,13 +9,13 @@
     <div class="row">
         <div *ngIf="showQuestionTypes" class="col-xs-12">
             <ul class="list-group">
-                <a (click)="loadQuestionTemplate(1)">
+                <a (click)="toggleQuestionTemplate(1,false)">
                     <li class="list-group-item">Multiple choice</li>
                 </a>
-                <a (click)="loadQuestionTemplate(2)">
+                <a (click)="toggleQuestionTemplate(2,false)">
                     <li class="list-group-item">Text</li>
                 </a>        
-                <a (click)="loadQuestionTemplate(3)">
+                <a (click)="toggleQuestionTemplate(3,false)">
                     <li class="list-group-item">True/False</li>
                 </a>
             </ul>
@@ -25,18 +25,39 @@
     <div [ngSwitch]="questionType">
         <div *ngIf="!showQuestionTypes">
             <button class="btn" 
-                    (click)="backToTypes()">
+                    (click)="toggleQuestionTemplate(0,true)">
                 Back
             </button>
+            <form [formGroup]="questionForm" (ngSubmit)="saveQuestion()">
+                        <div class="form-group">
+                            <label>Question</label>
+                            <textarea formControlName="questionText" 
+                                    class="form-control"></textarea>
+                        
+                
+                <div *ngSwitchCase=1>
+                    <app-question-multiple-choice-form 
+                        [questionForm]="questionForm">
+                    </app-question-multiple-choice-form>
+                </div>
+                <div *ngSwitchCase=2>
+                    <app-question-text-form 
+                        [questionForm]="questionForm">
+                    </app-question-text-form>
+                </div>
+                <div *ngSwitchCase=3>
+                    <app-question-true-false-form 
+                        [questionForm]="questionForm">
+                    </app-question-true-false-form>
+                </div>
+                <button appAppButton
+                        class="btn">Save
+                </button>
+            </div>
+            </form>
+            
         </div>
-        <div *ngSwitchCase=1>
-            <app-question-multiple-choice-form [roundNumber]=roundNum></app-question-multiple-choice-form>
-        </div>
-        <div *ngSwitchCase=2>
-            <app-question-text-form [roundNumber]=roundNum></app-question-text-form>
-        </div>
-        <div *ngSwitchCase=3>
-            <app-question-true-false-form [roundNumber]=roundNum></app-question-true-false-form>
-        </div>
+    
     </div>
+
 </div>

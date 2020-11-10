@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Question } from 'src/app/shared/models/question.model';
+import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
 
 @Component({
   selector: 'app-question-text-form',
@@ -7,11 +10,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class QuestionTextFormComponent implements OnInit {
 
-  @Input() roundNumber: number;
-
-  constructor() { }
+  @Input() questionForm: FormGroup;
+  
+  constructor(private createQuizService: CreateQuizService) { }
 
   ngOnInit(): void {
+
   }
 
 }
