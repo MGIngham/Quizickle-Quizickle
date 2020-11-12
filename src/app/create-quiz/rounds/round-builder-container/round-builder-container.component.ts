@@ -27,7 +27,7 @@ export class RoundBuilderContainerComponent implements OnInit, OnDestroy {
     this.quizId = this.createQuizService.quiz.id;
     //this.quizId = 31;
 
-    this.createQuizService.roundsReferenceArray
+    this.roundsSubject = this.createQuizService.roundsReferenceArray
     .subscribe(rounds => {
       this.rounds = rounds;
     })

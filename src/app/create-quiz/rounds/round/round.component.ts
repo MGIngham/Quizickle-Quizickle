@@ -16,7 +16,7 @@ export class RoundComponent implements OnInit, OnDestroy {
   @Input() round: Round;
 
   subscription: Subscription;
-  questions: Question[];
+  questions: Question[] = [];
 
   updateRoundName: FormGroup;
   roundDisplayName: string;

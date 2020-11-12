@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
 
 @Component({
   selector: 'app-quiz-builder-container',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizBuilderContainerComponent implements OnInit {
 
-  constructor() { }
+  quizId: number;
+
+  constructor(private router: Router, private createQuizService: CreateQuizService) { }
 
   ngOnInit(): void {
+    this.quizId = this.createQuizService.quiz.id;
+  }
+
+  playQuiz() {
+    console.log("Navigating");
+    this.router.navigate(['/play/quiz/', this.quizId])
   }
 
 }
