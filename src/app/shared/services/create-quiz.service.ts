@@ -54,7 +54,6 @@ export class CreateQuizService {
             if(response) {
                 this.httpErrorState.next(false);
                 this.validHttpResponse.next(true);
-                console.log(this.rounds);
             }
         },
         (error) => {

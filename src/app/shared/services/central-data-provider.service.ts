@@ -20,14 +20,18 @@ export class CentralDataProvider {
     constructor(private http: HttpClient) {}
 
     //HTTP methods for Quizzes
-    getQuizById(id: number){
-        this.http.get(this.baseUri + "quizs" + id)
+    getQuizById(id: number) {
+        return this.http.get<Quiz>(this.baseUri + "quizs/" + id)
         .pipe(
             catchError(this.handleError)
         )
-        .subscribe(response => {
-            console.log(response);
-        })
+    }
+
+    getRoundsByQuizId(id: number) {
+        return this.http.get<Round[]>(this.baseUri + "rounds/quiz/" + id)
+        .pipe(
+            catchError(this.handleError)
+        )
     }
 
     saveQuiz(quiz: Quiz) {
