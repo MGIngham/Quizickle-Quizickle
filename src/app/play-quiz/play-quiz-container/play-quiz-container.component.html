@@ -1,7 +1,26 @@
 <div>
     <h2>{{ quizName }}</h2>
 </div>
+<!--<div *ngFor="let round of rounds | filterRounds:question.roundNumber">
+    <h2>{{ round.roundNumber }}</h2>
+</div>-->
 <div>
-    <h3>{{ question.questionText }}</h3>
+    <h2>{{ displayRoundInfo }}</h2>
+</div>
+<div [ngSwitch]="questionType">
+    <div *ngSwitchCase=1>
+        <app-question-multiple-choice [question]=question></app-question-multiple-choice>
+    </div>
+    <div *ngSwitchCase=2>
+        <app-question-text [question]=question></app-question-text>
+    </div>
+    <div *ngSwitchCase=3>
+        <app-question-true-false [question]=question></app-question-true-false>
+    </div>
+</div>
+<!--TESTING-->
+
+<div>
+    <button (click)="getNextQuestion()">Next question</button>
 </div>
 

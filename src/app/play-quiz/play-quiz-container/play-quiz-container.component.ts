@@ -17,12 +17,15 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   roundsSubscription: Subscription;
   quiz: Quiz;
   quizName: string = "";
-  rounds: Round[];
+  displayRoundInfo: string =  "";
+  rounds: Round[] = [];
+  round: Round;
   questions: Question[];
   question: Question;
 
   questionsLength: number;
   questionIndex: number = 0;
+  questionType: number = 0;
 
   constructor(private route: ActivatedRoute, private playQuizService: PlayQuizService) { }
 
@@ -42,18 +45,34 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     this.roundsSubscription = this.playQuizService.rounds
     .subscribe(rounds => {
       this.rounds = rounds;
+  
+      this.getNextQuestion();
     })
 
     this.questions = this.route.snapshot.data[0];
     this.questionsLength = this.questions.length;
 
-    this.getNextQuestion();
 
   }
 
   getNextQuestion() {
-    this.question = this.questions[this.questionIndex];
-    this.questionIndex ++;
+    console.log(this.questionIndex);
+    console.log(this.questionsLength);
+    if(this.questionIndex < this.questionsLength) {
+      this.question = this.questions[this.questionIndex];
+      this.questionType = this.question.questionType;
+      this.displayRound();
+      this.questionIndex ++;
+    } else {
+      this.playQuizService.calculateScore();
+    }
+  }
+
+  displayRound() {
+    this.round = this.rounds.find(r => 
+      r.roundNumber === this.question.roundNumber
+    );
+    this.displayRoundInfo = "Round: " + this.round.roundNumber + " "  + this.round.roundName;
   }
 
   ngOnDestroy() {

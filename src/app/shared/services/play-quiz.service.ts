@@ -29,8 +29,11 @@ export class PlayQuizService {
     getRounds(id: number) {
         this.dataService.getRoundsByQuizId(id)
         .subscribe(response => {
-            this.rounds.next(response)
-            console.log(response);
+            this.rounds.next(response);
         })
+    }
+
+    calculateScore() {
+        console.log("THE QUIZ IS OVER");
     }
 }
