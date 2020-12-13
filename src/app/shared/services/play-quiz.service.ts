@@ -19,6 +19,8 @@ export class PlayQuizService {
     quiz: Subject<Quiz> = new Subject<Quiz>();
     rounds: Subject<Round[]> = new Subject<Round[]>();
 
+    score: number = 0;
+
     getQuiz (id: number) {
         this.dataService.getQuizById(id)
         .subscribe(response => {
@@ -31,6 +33,18 @@ export class PlayQuizService {
         .subscribe(response => {
             this.rounds.next(response);
         })
+    }
+
+    evaluateTextAnswer(answer: string, correctAnswer: string) {
+       //let _answer: string
+        //let _correctAnswer: string;
+        console.log(answer);
+        console.log(correctAnswer);
+        if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
+            this.score ++;
+        } else {
+            this.score = this.score;
+        }
     }
 
     calculateScore() {

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Question } from 'src/app/shared/models/question.model';
+import { PlayQuizService } from 'src/app/shared/services/play-quiz.service';
 
 @Component({
   selector: 'app-question-text',
@@ -9,10 +11,22 @@ import { Question } from 'src/app/shared/models/question.model';
 export class QuestionTextComponent implements OnInit {
 
   @Input() question: Question;
+
+  answerForm: FormGroup;
   
-  constructor() { }
+  constructor(private playQuizService: PlayQuizService) { }
 
   ngOnInit(): void {
+
+    this.answerForm = new FormGroup({
+      "answer": new FormControl("", Validators.required)
+    })
+
+  }
+
+  submitAnswer() {
+    this.playQuizService.evaluateTextAnswer(this.answerForm.get("answer").value, this.question.answerText);
+    console.log("The score is: " + this.playQuizService.score);
   }
 
 }
