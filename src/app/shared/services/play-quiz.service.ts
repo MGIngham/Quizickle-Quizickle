@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Answer } from '../models/answer.model';
+import { Question } from '../models/question.model';
 import { Quiz } from '../models/quiz.model';
 import { Round } from '../models/round.model';
 import { CentralDataProvider } from './central-data-provider.service';
@@ -22,6 +24,7 @@ export class PlayQuizService {
     score: number = 0;
     toggleNextQuestion: Subject<boolean> = new Subject<boolean>();
     nextQuestionValue: boolean = false;
+    answers: Answer[] = [];
 
     getQuiz (id: number) {
         this.dataService.getQuizById(id)
@@ -37,7 +40,10 @@ export class PlayQuizService {
         })
     }
 
-    evaluateTextAnswer(answer: string, correctAnswer: string) {
+    evaluateTextAnswer(answer: string, correctAnswer: string, question: Question) {
+
+        let fullAnswer: Answer;
+
         if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
             this.score ++;
         } else {
@@ -46,6 +52,14 @@ export class PlayQuizService {
         console.log(this.score);
         this.nextQuestionValue = true;
         this.toggleNextQuestion.next(this.nextQuestionValue);
+
+        fullAnswer = new Answer(
+            question.roundNumber,
+            question.questionText,
+            correctAnswer,
+            answer,
+            true //Must change this to a local variable. 
+        )
     }
 
     calculateScore() {

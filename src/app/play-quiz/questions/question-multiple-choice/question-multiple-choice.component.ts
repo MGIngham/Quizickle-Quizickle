@@ -60,7 +60,7 @@ export class QuestionMultipleChoiceComponent implements OnInit {
     this.answerForm.get('options').valueChanges
     .subscribe(val => {
       console.log(val);
-      this.playQuizService.evaluateTextAnswer(val, this.question.answerText);
+      this.playQuizService.evaluateTextAnswer(val, this.question.answerText, this.question);
     })
 
   }

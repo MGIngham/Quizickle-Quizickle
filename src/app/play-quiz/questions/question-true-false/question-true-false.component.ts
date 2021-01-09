@@ -33,7 +33,7 @@ export class QuestionTrueFalseComponent implements OnInit {
     .subscribe(val => {
       let value = val.toString();
       console.log(val);
-      this.playQuizService.evaluateTextAnswer(value, correctAnswer);
+      this.playQuizService.evaluateTextAnswer(value, correctAnswer, this.question);
     })
 
   }
