@@ -1,1 +1,13 @@
 <p>{{ question.questionText }}</p>
+
+<div class="row">
+    <form [formGroup]="answerForm">
+        <div *ngFor="let option of options" class="form-group">
+            <label>{{option}}</label>
+            <input
+            type="radio"
+            [value]="option"
+            formControlName="options">
+        </div>
+    </form>
+</div>

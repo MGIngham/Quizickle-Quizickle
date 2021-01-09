@@ -38,14 +38,15 @@ export class PlayQuizService {
     evaluateTextAnswer(answer: string, correctAnswer: string) {
        //let _answer: string
         //let _correctAnswer: string;
-        console.log(answer);
-        console.log(correctAnswer);
         if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
             this.score ++;
         } else {
             this.score = this.score;
         }
+        console.log(this.score);
     }
+
+
 
     calculateScore() {
         console.log("THE QUIZ IS OVER");
