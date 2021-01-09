@@ -1,1 +1,28 @@
 <p>{{ question.questionText }}</p>
+<div class="row">
+    <form [formGroup]="answerForm">
+        <div class="row">
+            <div class="answer col-xs-2">
+                    <label>
+                        <span>True</span>
+                    <input
+                        class="inputStyle"
+                        type="radio"
+                        [value]=true
+                        formControlName="options">
+                    </label>
+            </div>
+
+            <div class="answer col-xs-2">
+                    <label>
+                        <span>False</span>
+                    <input
+                        class="inputStyle"
+                        type="radio"
+                        [value]=false
+                        formControlName="options">
+                    </label>
+            </div>  
+        </div>
+    </form>
+</div>

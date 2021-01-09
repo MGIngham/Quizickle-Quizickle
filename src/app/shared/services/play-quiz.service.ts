@@ -20,6 +20,8 @@ export class PlayQuizService {
     rounds: Subject<Round[]> = new Subject<Round[]>();
 
     score: number = 0;
+    toggleNextQuestion: Subject<boolean> = new Subject<boolean>();
+    nextQuestionValue: boolean = false;
 
     getQuiz (id: number) {
         this.dataService.getQuizById(id)
@@ -36,17 +38,15 @@ export class PlayQuizService {
     }
 
     evaluateTextAnswer(answer: string, correctAnswer: string) {
-       //let _answer: string
-        //let _correctAnswer: string;
         if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
             this.score ++;
         } else {
             this.score = this.score;
         }
         console.log(this.score);
+        this.nextQuestionValue = true;
+        this.toggleNextQuestion.next(this.nextQuestionValue);
     }
-
-
 
     calculateScore() {
         console.log("THE QUIZ IS OVER");

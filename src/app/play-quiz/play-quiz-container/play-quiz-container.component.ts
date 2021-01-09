@@ -15,6 +15,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
 
   quizSubscription: Subscription;
   roundsSubscription: Subscription;
+  toggleQuestionSubscription: Subscription;
   quiz: Quiz;
   quizName: string = "";
   displayRoundInfo: string =  "";
@@ -49,6 +50,13 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
       this.getNextQuestion();
     })
 
+    this.toggleQuestionSubscription = this.playQuizService.toggleNextQuestion
+    .subscribe(val => {
+      if(val == true) {
+        this.getNextQuestion();
+      }
+    })
+
     this.questions = this.route.snapshot.data[0];
     this.questionsLength = this.questions.length;
 
@@ -66,6 +74,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     } else {
       this.playQuizService.calculateScore();
     }
+    this.playQuizService.nextQuestionValue = false;
   }
 
   displayRound() {
@@ -78,6 +87,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.quizSubscription.unsubscribe();
     this.roundsSubscription.unsubscribe();
+    this.toggleQuestionSubscription.unsubscribe();
   }
 
 }
