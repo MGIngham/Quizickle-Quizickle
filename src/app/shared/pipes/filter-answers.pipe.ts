@@ -3,7 +3,7 @@ import { Answer } from '../models/answer.model';
 
 @Pipe({name: 'filterAnswers'})
 export class FilterAnswersPipe implements PipeTransform {
-    transform(questions: Answer[], roundNumber: number) : Answer[] {
-        return questions.filter(question => question.roundNumber === roundNumber);
+    transform(answers: Answer[], roundNumber: number) : Answer[] {
+        return answers.filter(answer => answer.roundNumber === roundNumber);
     }
 }

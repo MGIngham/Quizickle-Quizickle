@@ -53,7 +53,6 @@ export class PlayQuizService {
             this.score = this.score;
             answerIsCorrect = false;
         }
-        console.log(this.score);
         this.nextQuestionValue = true;
         this.toggleNextQuestion.next(this.nextQuestionValue);
 

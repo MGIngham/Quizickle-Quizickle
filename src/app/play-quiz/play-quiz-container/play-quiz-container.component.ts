@@ -22,6 +22,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   displayRoundInfo: string =  "";
   rounds: Round[] = [];
   round: Round;
+  newRound: boolean; 
   questions: Question[];
   question: Question;
 
@@ -48,6 +49,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     .subscribe(rounds => {
       this.rounds = rounds;
   
+      this.round = this.rounds[0];
       this.getNextQuestion();
     })
 
@@ -68,12 +70,9 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     this.questions = this.route.snapshot.data[0];
     this.questionsLength = this.questions.length;
 
-
   }
 
   getNextQuestion() {
-    console.log(this.questionIndex);
-    console.log(this.questionsLength);
     if(this.questionIndex < this.questionsLength) {
       this.question = this.questions[this.questionIndex];
       this.questionType = this.question.questionType;
@@ -86,9 +85,22 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   }
 
   displayRound() {
+    let previousRound = this.round.roundNumber;
+
     this.round = this.rounds.find(r => 
       r.roundNumber === this.question.roundNumber
     );
+
+    if(previousRound != this.round.roundNumber) {
+
+      this.newRound = true;
+
+      setTimeout(() => {
+        this.newRound = false;
+      }, 3000);
+
+    }
+
     this.displayRoundInfo = "Round: " + this.round.roundNumber + " "  + this.round.roundName;
   }
 

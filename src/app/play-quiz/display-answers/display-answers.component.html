@@ -2,11 +2,17 @@
 
 <span>You answered</span>
 
-<div *ngFor="let answer of answers">
-    <ul>
-        <li>{{answer.roundNumber}}</li>
-        <li>{{answer.questionText}}</li>
-        <li>{{answer.correctAnswer}}</li>
-        <li>{{answer.givenAnswer}}</li>
-    </ul>
+<div *ngFor="let round of rounds">
+    <div>
+        <span>Round: {{round.roundNumber}}</span>
+    </div>
+    <div *ngFor="let answer of answers | filterAnswers:round.roundNumber">
+        <ul>
+            <li>{{answer.roundNumber}}</li>
+            <li>{{answer.questionText}}</li>
+            <li>{{answer.correctAnswer}}</li>
+            <li>{{answer.givenAnswer}}</li>
+        </ul>
+    </div>
 </div>
+
