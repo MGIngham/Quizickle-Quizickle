@@ -1,0 +1,12 @@
+<h3>You scored {{ score }}</h3>
+
+<span>You answered</span>
+
+<div *ngFor="let answer of answers">
+    <ul>
+        <li>{{answer.roundNumber}}</li>
+        <li>{{answer.questionText}}</li>
+        <li>{{answer.correctAnswer}}</li>
+        <li>{{answer.givenAnswer}}</li>
+    </ul>
+</div>

@@ -9,13 +9,16 @@
 </div>
 <div [ngSwitch]="questionType">
     <div *ngSwitchCase=1>
-        <app-question-multiple-choice [question]=question></app-question-multiple-choice>
+        <app-question-multiple-choice [question]=question
+                                        [questionIndex]="questionIndex"></app-question-multiple-choice>
     </div>
     <div *ngSwitchCase=2>
-        <app-question-text [question]=question></app-question-text>
+        <app-question-text [question]=question
+                            [questionIndex]="questionIndex"></app-question-text>
     </div>
     <div *ngSwitchCase=3>
-        <app-question-true-false [question]=question></app-question-true-false>
+        <app-question-true-false [question]=question
+                                    [questionIndex]="questionIndex"></app-question-true-false>
     </div>
 </div>
 

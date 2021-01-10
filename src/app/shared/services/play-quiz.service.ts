@@ -25,6 +25,7 @@ export class PlayQuizService {
     toggleNextQuestion: Subject<boolean> = new Subject<boolean>();
     nextQuestionValue: boolean = false;
     answers: Answer[] = [];
+    quizIsOver: Subject<boolean> = new Subject<boolean>();
 
     getQuiz (id: number) {
         this.dataService.getQuizById(id)
@@ -43,11 +44,14 @@ export class PlayQuizService {
     evaluateTextAnswer(answer: string, correctAnswer: string, question: Question) {
 
         let fullAnswer: Answer;
+        let answerIsCorrect: boolean;
 
         if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
             this.score ++;
+            answerIsCorrect = true;
         } else {
             this.score = this.score;
+            answerIsCorrect = false;
         }
         console.log(this.score);
         this.nextQuestionValue = true;
@@ -58,11 +62,14 @@ export class PlayQuizService {
             question.questionText,
             correctAnswer,
             answer,
-            true //Must change this to a local variable. 
+            answerIsCorrect 
         )
+
+        this.answers.push(fullAnswer);
     }
 
     calculateScore() {
+        this.quizIsOver.next(true);
         console.log("THE QUIZ IS OVER");
     }
 }

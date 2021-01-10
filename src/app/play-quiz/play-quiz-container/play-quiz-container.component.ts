@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscribable, Subscription } from 'rxjs';
 import { Question } from 'src/app/shared/models/question.model';
 import { Quiz } from 'src/app/shared/models/quiz.model';
@@ -16,6 +16,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   quizSubscription: Subscription;
   roundsSubscription: Subscription;
   toggleQuestionSubscription: Subscription;
+  quizIsOver: Subscription;
   quiz: Quiz;
   quizName: string = "";
   displayRoundInfo: string =  "";
@@ -28,7 +29,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   questionIndex: number = 0;
   questionType: number = 0;
 
-  constructor(private route: ActivatedRoute, private playQuizService: PlayQuizService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private playQuizService: PlayQuizService) { }
 
   ngOnInit(): void {
 
@@ -54,6 +55,13 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     .subscribe(val => {
       if(val == true) {
         this.getNextQuestion();
+      }
+    })
+
+    this.quizIsOver = this.playQuizService.quizIsOver
+    .subscribe(isOver => {
+      if(isOver) {
+        this.router.navigate(["/answers/quiz/", this.quiz.id])
       }
     })
 

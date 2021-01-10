@@ -11,6 +11,7 @@ import { PlayQuizService } from 'src/app/shared/services/play-quiz.service';
 export class QuestionTextComponent implements OnInit {
 
   @Input() question: Question;
+  @Input() questionIndex: number;
 
   answerForm: FormGroup;
   
