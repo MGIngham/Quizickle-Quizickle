@@ -13,14 +13,14 @@ export class QuestionTrueFalseComponent implements OnInit {
   @Input() question: Question;
   @Input() questionIndex: number;
 
-  answerForm: FormGroup;
+  answerFormTrueFalse: FormGroup;
   
   constructor(private playQuizService: PlayQuizService) { }
 
   ngOnInit(): void {
 
-    this.answerForm = new FormGroup({
-      "options": new FormControl()
+    this.answerFormTrueFalse = new FormGroup({
+      "optionsTrueFalse": new FormControl("")
     })
 
     this.selectAnswer();
@@ -30,7 +30,7 @@ export class QuestionTrueFalseComponent implements OnInit {
 
     let correctAnswer = this.question.isTrueFalse.toString();
 
-    this.answerForm.get('options').valueChanges
+    this.answerFormTrueFalse.get('optionsTrueFalse').valueChanges
     .subscribe(val => {
       let value = val.toString();
       console.log(val);

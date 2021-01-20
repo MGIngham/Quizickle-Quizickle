@@ -28,11 +28,7 @@ export class DisplayAnswersComponent implements OnInit {
     this.answers = this.playQuizService.answers;
     this.playQuizService.getRounds(quizId);
 
-    this.roundsSubscription = this.playQuizService.rounds
-    .subscribe(rounds => {
-      this.rounds = rounds;
-      console.log(this.rounds);
-    })
+    //this.rounds = this.playQuizService.rounds;
 
   }
 

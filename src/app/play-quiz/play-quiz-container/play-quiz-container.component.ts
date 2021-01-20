@@ -15,7 +15,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
 
   quizSubscription: Subscription;
   roundsSubscription: Subscription;
-  toggleQuestionSubscription: Subscription;
+  questionIndexReference: Subscription;
   quizIsOver: Subscription;
   quiz: Quiz;
   quizName: string = "";
@@ -27,7 +27,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   question: Question;
 
   questionsLength: number;
-  questionIndex: number = 0;
+  questionIndex: number = 1;
   questionType: number = 0;
 
   constructor(private route: ActivatedRoute, private router: Router, private playQuizService: PlayQuizService) { }
@@ -48,40 +48,36 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     this.roundsSubscription = this.playQuizService.rounds
     .subscribe(rounds => {
       this.rounds = rounds;
-  
       this.round = this.rounds[0];
+      this.displayRound();
+    })
+
+    this.questionIndexReference = this.playQuizService.questionIndexReference
+    .subscribe(index => {
+      this.questionIndex = index;
       this.getNextQuestion();
-    })
-
-    this.toggleQuestionSubscription = this.playQuizService.toggleNextQuestion
-    .subscribe(val => {
-      if(val == true) {
-        this.getNextQuestion();
-      }
-    })
-
-    this.quizIsOver = this.playQuizService.quizIsOver
-    .subscribe(isOver => {
-      if(isOver) {
-        this.router.navigate(["/answers/quiz/", this.quiz.id])
-      }
     })
 
     this.questions = this.route.snapshot.data[0];
     this.questionsLength = this.questions.length;
+    this.question = this.questions[0];
+    this.questionType = this.question.questionType;
+    console.log(this.questions);
 
   }
 
   getNextQuestion() {
-    if(this.questionIndex < this.questionsLength) {
-      this.question = this.questions[this.questionIndex];
+    let questionIndex = this.questionIndex;
+    if(questionIndex < this.questionsLength -1) {
+      this.question = this.questions[questionIndex];
       this.questionType = this.question.questionType;
       this.displayRound();
-      this.questionIndex ++;
     } else {
       this.playQuizService.calculateScore();
+      this.router.navigate(["/answers/quiz/", this.quiz.id])
     }
-    this.playQuizService.nextQuestionValue = false;
+
+    console.log(this.questionIndex + " " + this. questionsLength)
   }
 
   displayRound() {
@@ -107,7 +103,6 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.quizSubscription.unsubscribe();
     this.roundsSubscription.unsubscribe();
-    this.toggleQuestionSubscription.unsubscribe();
   }
 
 }

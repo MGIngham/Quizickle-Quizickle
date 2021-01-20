@@ -26,8 +26,12 @@ export class QuestionTextComponent implements OnInit {
   }
 
   submitAnswer() {
-    this.playQuizService.evaluateTextAnswer(this.answerForm.get("answer").value, this.question.answerText, this.question);
-    console.log("The score is: " + this.playQuizService.score);
+    let formValue: string;
+    formValue = this.answerForm.get("answer").value
+
+    this.playQuizService.evaluateTextAnswer(formValue, this.question.answerText, this.question);
+
+    this.answerForm.reset();
   }
 
 }

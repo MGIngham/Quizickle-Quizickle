@@ -1,6 +1,6 @@
 <p>{{ questionIndex }}. {{ question.questionText }}</p>
 <div class="row">
-    <form [formGroup]="answerForm">
+    <form [formGroup]="answerFormTrueFalse">
         <div class="row">
             <div class="answer col-xs-2">
                     <label>
@@ -9,7 +9,7 @@
                         class="inputStyle"
                         type="radio"
                         [value]=true
-                        formControlName="options">
+                        formControlName="optionsTrueFalse">
                     </label>
             </div>
 
@@ -20,7 +20,7 @@
                         class="inputStyle"
                         type="radio"
                         [value]=false
-                        formControlName="options">
+                        formControlName="optionsTrueFalse">
                     </label>
             </div>  
         </div>

@@ -22,10 +22,13 @@ export class PlayQuizService {
     rounds: Subject<Round[]> = new Subject<Round[]>();
 
     score: number = 0;
-    toggleNextQuestion: Subject<boolean> = new Subject<boolean>();
-    nextQuestionValue: boolean = false;
+    //toggleNextQuestion: Subject<boolean> = new Subject<boolean>();
+    //nextQuestionValue: boolean = false;
     answers: Answer[] = [];
     quizIsOver: Subject<boolean> = new Subject<boolean>();
+
+    questionIndex: number = 0;
+    questionIndexReference: Subject<number> = new Subject<number>();
 
     getQuiz (id: number) {
         this.dataService.getQuizById(id)
@@ -53,8 +56,11 @@ export class PlayQuizService {
             this.score = this.score;
             answerIsCorrect = false;
         }
-        this.nextQuestionValue = true;
-        this.toggleNextQuestion.next(this.nextQuestionValue);
+
+        this.questionIndex ++;
+        this.questionIndexReference.next(this.questionIndex);
+        //this.nextQuestionValue = true;
+        //this.toggleNextQuestion.next(this.nextQuestionValue);
 
         fullAnswer = new Answer(
             question.roundNumber,
