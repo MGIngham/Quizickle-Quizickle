@@ -27,7 +27,7 @@ export class CentralDataProvider {
         )
     }
 
-    getRoundsByQuizId(id: number) {
+    getRoundsByQuizId(id: string) {
         return this.http.get<Round[]>(this.baseUri + "rounds/quiz/" + id)
         .pipe(
             catchError(this.handleError)

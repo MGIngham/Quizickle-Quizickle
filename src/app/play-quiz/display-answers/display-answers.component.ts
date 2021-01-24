@@ -23,12 +23,9 @@ export class DisplayAnswersComponent implements OnInit {
 
     const quizId = +this.route.snapshot.paramMap.get('id');
 
-
     this.score = this.playQuizService.score;
     this.answers = this.playQuizService.answers;
-    this.playQuizService.getRounds(quizId);
-
-    //this.rounds = this.playQuizService.rounds;
+    this.rounds = this.playQuizService.rounds;
 
   }
 

@@ -14,7 +14,6 @@ import { PlayQuizService } from 'src/app/shared/services/play-quiz.service';
 export class PlayQuizContainerComponent implements OnInit, OnDestroy {
 
   quizSubscription: Subscription;
-  roundsSubscription: Subscription;
   questionIndexReference: Subscription;
   quizIsOver: Subscription;
   quiz: Quiz;
@@ -37,19 +36,11 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     const quizId = +this.route.snapshot.paramMap.get('id');
 
     this.playQuizService.getQuiz(quizId);
-    this.playQuizService.getRounds(quizId);
 
     this.quizSubscription = this.playQuizService.quiz
     .subscribe(quiz => {
       this.quiz = quiz;
       this.quizName = this.quiz.quizName;
-    })
-
-    this.roundsSubscription = this.playQuizService.rounds
-    .subscribe(rounds => {
-      this.rounds = rounds;
-      this.round = this.rounds[0];
-      this.displayRound();
     })
 
     this.questionIndexReference = this.playQuizService.questionIndexReference
@@ -58,11 +49,15 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
       this.getNextQuestion();
     })
 
-    this.questions = this.route.snapshot.data[0];
+    this.questions = this.route.snapshot.data["questions"];
+    this.rounds = this.route.snapshot.data["rounds"];
+
     this.questionsLength = this.questions.length;
     this.question = this.questions[0];
     this.questionType = this.question.questionType;
-    console.log(this.questions);
+    this.round = this.rounds[0];
+    this.displayRound();
+    this.playQuizService.rounds = this.rounds;
 
   }
 
@@ -88,13 +83,10 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     );
 
     if(previousRound != this.round.roundNumber) {
-
       this.newRound = true;
-
       setTimeout(() => {
         this.newRound = false;
       }, 3000);
-
     }
 
     this.displayRoundInfo = "Round: " + this.round.roundNumber + " "  + this.round.roundName;
@@ -102,7 +94,6 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.quizSubscription.unsubscribe();
-    this.roundsSubscription.unsubscribe();
   }
 
 }

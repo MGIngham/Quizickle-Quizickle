@@ -19,7 +19,8 @@ export class PlayQuizService {
     
     //This hold the quiz object that all rounds and questions will be associated with. 
     quiz: Subject<Quiz> = new Subject<Quiz>();
-    rounds: Subject<Round[]> = new Subject<Round[]>();
+    //rounds: Subject<Round[]> = new Subject<Round[]>();
+    rounds: Round[] = [];
 
     score: number = 0;
     //toggleNextQuestion: Subject<boolean> = new Subject<boolean>();
@@ -37,12 +38,12 @@ export class PlayQuizService {
         })
     }    
 
-    getRounds(id: number) {
+    /*getRounds(id: string) {
         this.dataService.getRoundsByQuizId(id)
         .subscribe(response => {
             this.rounds.next(response);
         })
-    }
+    }*/
 
     evaluateTextAnswer(answer: string, correctAnswer: string, question: Question) {
 
