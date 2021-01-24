@@ -17,7 +17,7 @@ export class DisplayAnswersComponent implements OnInit {
   roundsSubscription: Subscription;
   score: number;
   answers: Answer[];
-  rounds: Round[] = [];
+  rounds = [];
 
   ngOnInit(): void {
 
@@ -26,6 +26,8 @@ export class DisplayAnswersComponent implements OnInit {
     this.score = this.playQuizService.score;
     this.answers = this.playQuizService.answers;
     this.rounds = this.playQuizService.rounds;
+
+    console.log(this.rounds[0])
 
   }
 

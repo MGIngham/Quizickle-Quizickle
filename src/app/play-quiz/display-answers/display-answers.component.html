@@ -5,6 +5,8 @@
 <div *ngFor="let round of rounds">
     <div>
         <span>Round: {{round.roundNumber}}</span>
+        <br>
+        <span>Round score: {{round.roundScore}}</span>
     </div>
     <div *ngFor="let answer of answers | filterAnswers:round.roundNumber">
         <ul>

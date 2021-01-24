@@ -18,32 +18,18 @@ export class PlayQuizService {
     validHttpResponse: Subject<boolean> = new Subject<boolean>();
     
     //This hold the quiz object that all rounds and questions will be associated with. 
-    quiz: Subject<Quiz> = new Subject<Quiz>();
-    //rounds: Subject<Round[]> = new Subject<Round[]>();
-    rounds: Round[] = [];
+    rounds = [];
 
     score: number = 0;
-    //toggleNextQuestion: Subject<boolean> = new Subject<boolean>();
-    //nextQuestionValue: boolean = false;
     answers: Answer[] = [];
     quizIsOver: Subject<boolean> = new Subject<boolean>();
 
     questionIndex: number = 0;
     questionIndexReference: Subject<number> = new Subject<number>();
 
-    getQuiz (id: number) {
-        this.dataService.getQuizById(id)
-        .subscribe(response => {
-            this.quiz.next(response);
-        })
-    }    
-
-    /*getRounds(id: string) {
-        this.dataService.getRoundsByQuizId(id)
-        .subscribe(response => {
-            this.rounds.next(response);
-        })
-    }*/
+    addPropertyToRounds(rounds: Round[]) {
+        this.rounds = rounds.map(round => ({...round, roundScore: 0}));
+    }
 
     evaluateTextAnswer(answer: string, correctAnswer: string, question: Question) {
 
@@ -52,6 +38,7 @@ export class PlayQuizService {
 
         if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
             this.score ++;
+            this.rounds[question.roundNumber -1].roundScore += 1;
             answerIsCorrect = true;
         } else {
             this.score = this.score;
@@ -60,8 +47,6 @@ export class PlayQuizService {
 
         this.questionIndex ++;
         this.questionIndexReference.next(this.questionIndex);
-        //this.nextQuestionValue = true;
-        //this.toggleNextQuestion.next(this.nextQuestionValue);
 
         fullAnswer = new Answer(
             question.roundNumber,
