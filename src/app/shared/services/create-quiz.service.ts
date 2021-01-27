@@ -18,6 +18,7 @@ export class CreateQuizService {
     
     //This hold the quiz object that all rounds and questions will be associated with. 
     quiz: Quiz;
+    quizThemeColour: Subject<string> = new Subject<string>();
 
     //These properties pass data from the rounds builder into the question builder. 
     rounds: Round[] = [];
@@ -98,6 +99,9 @@ export class CreateQuizService {
         })
     }
 
-    
+    getQuizColour(hexCode: string) {
+        this.quizThemeColour.next(hexCode);
+        console.log(hexCode);
+    }
 
 }

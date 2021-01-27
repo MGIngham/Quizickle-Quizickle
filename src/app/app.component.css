@@ -1,14 +1,18 @@
-.header-container {
-    min-height: 15%;
-    background-color: rgb(252, 170, 48);
-}
 
 .content-container {
+    height: 85%;
+}
+
+.container-main {
     min-height: 85%;
+    margin: 0;
+}
+
+.header-container {
+    min-height: 15%;
 }
 
 .footer-container {
     height: 50px;
     margin-top: -50px;
 }
-

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Question } from 'src/app/shared/models/question.model';
 import { Quiz } from 'src/app/shared/models/quiz.model';
 import { Round } from 'src/app/shared/models/round.model';
+import { CreateQuizService } from 'src/app/shared/services/create-quiz.service';
 import { PlayQuizService } from 'src/app/shared/services/play-quiz.service';
 
 @Component({
@@ -26,7 +27,11 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   questionIndex: number = 1;
   questionType: number = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router, private playQuizService: PlayQuizService) { }
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+    private createQuizService: CreateQuizService,
+    private playQuizService: PlayQuizService
+    ) { }
 
   ngOnInit(): void {
 
@@ -42,6 +47,8 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     this.quizName = this.quiz.quizName;
     this.questions = this.route.snapshot.data["questions"];
     this.rounds = this.route.snapshot.data["rounds"];
+
+    this.createQuizService.getQuizColour(this.quiz.backgroundColour);
 
     this.question = this.questions[0];
     this.questionType = this.question.questionType;

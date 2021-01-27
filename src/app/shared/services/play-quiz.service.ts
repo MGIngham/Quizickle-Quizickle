@@ -26,6 +26,7 @@ export class PlayQuizService {
 
     questionIndex: number = 0;
     questionIndexReference: Subject<number> = new Subject<number>();
+    quizThemeColour: Subject<string> = new Subject<string>();
 
     addPropertyToRounds(rounds: Round[]) {
         this.rounds = rounds.map(round => ({...round, roundScore: 0}));
@@ -35,6 +36,7 @@ export class PlayQuizService {
 
         let fullAnswer: Answer;
         let answerIsCorrect: boolean;
+        let finalScore: number;
 
         if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
             this.score ++;
@@ -62,5 +64,9 @@ export class PlayQuizService {
     calculateScore() {
         this.quizIsOver.next(true);
         console.log("THE QUIZ IS OVER");
+    }
+
+    getQuizColour(hexCode: string) {
+        this.quizThemeColour.next(hexCode);
     }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CreateQuizService } from '../shared/services/create-quiz.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private createQuizService: CreateQuizService) { }
+
+  themeColour: Observable<string> = this.createQuizService.quizThemeColour.asObservable();
+  //: string;
 
   ngOnInit(): void {
+
+    /*this.themeColour.subscribe
+    (col => {
+      this.color = col;
+      console.log(this.color);
+    })*/
   }
 
 }

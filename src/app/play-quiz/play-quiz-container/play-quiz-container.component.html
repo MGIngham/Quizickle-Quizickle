@@ -1,26 +1,34 @@
-<div *ngIf="newRound">
-    <h2>A new round</h2>
-</div>
-<div>
-    <h2>{{ quizName }}</h2>
-</div>
 
-<div>
-    <h2>{{ displayRoundInfo }}</h2>
-</div>
-<div [ngSwitch]="questionType">
-    <div *ngSwitchCase=1>
-        <app-question-multiple-choice [question]=question
-                                        [questionIndex]="questionIndex"></app-question-multiple-choice>
-    </div>
-    <div *ngSwitchCase=2>
-        <app-question-text [question]=question
-                            [questionIndex]="questionIndex"></app-question-text>
-    </div>
-    <div *ngSwitchCase=3>
-        <app-question-true-false [question]=question
-                                    [questionIndex]="questionIndex"></app-question-true-false>
-    </div>
-</div>
+    
+            <div *ngIf="newRound">
+                <h2>A new round</h2>
+            </div>
+            <div>
+                <h2>{{ quizName }}</h2>
+            </div>
+            
+            <div>
+                <h2>{{ displayRoundInfo }}</h2>
+            </div>
+            <div [ngSwitch]="questionType">
+                <div *ngSwitchCase=1>
+                    <app-question-multiple-choice [question]=question
+                                                    [questionIndex]="questionIndex"></app-question-multiple-choice>
+                </div>
+                <div *ngSwitchCase=2>
+                    <app-question-text [question]=question
+                                        [questionIndex]="questionIndex"></app-question-text>
+                </div>
+                <div *ngSwitchCase=3>
+                    <app-question-true-false [question]=question
+                                                [questionIndex]="questionIndex"></app-question-true-false>
+                </div>
+            </div>
+
+
+
+
+
+
 
 
