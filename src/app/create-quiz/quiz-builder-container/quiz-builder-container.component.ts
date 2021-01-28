@@ -15,6 +15,7 @@ export class QuizBuilderContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizId = this.createQuizService.quiz.id;
+    this.createQuizService.getQuizColour(this.createQuizService.quiz.backgroundColour);
   }
 
   playQuiz() {

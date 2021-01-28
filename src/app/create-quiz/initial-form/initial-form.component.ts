@@ -33,6 +33,8 @@ export class InitialFormComponent implements OnInit, OnDestroy {
       'backgroundColour': new FormControl("#fff")
     })
 
+    this.creatQuizService.getQuizColour("#ffb950");
+
   }
 
   onAddQuiz() {

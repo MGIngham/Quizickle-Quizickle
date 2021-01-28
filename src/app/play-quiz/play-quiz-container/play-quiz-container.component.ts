@@ -62,13 +62,18 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
   getNextQuestion() {
     const questionsLength = this.questions.length;
     let questionIndex = this.questionIndex;
-    if(questionIndex < questionsLength -1) {
+    console.log(questionIndex + " AND " + questionsLength);
+
+    if(questionsLength == 2 && questionsLength != questionIndex || questionIndex < questionsLength - 1) {
       this.question = this.questions[questionIndex];
       this.questionType = this.question.questionType;
       this.displayRound();
+      console.log(questionIndex + " AND " + questionsLength);
     } else {
+      console.log(questionIndex + " AND " + questionsLength);
       this.playQuizService.calculateScore();
       this.router.navigate(["/answers/quiz/", this.quiz.id])
+      console.log(this.questions);
     }
 
   }
