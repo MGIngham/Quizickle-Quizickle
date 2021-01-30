@@ -1,3 +1,4 @@
+import { ConstantPool } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,6 +16,7 @@ import { PlayQuizService } from 'src/app/shared/services/play-quiz.service';
 export class PlayQuizContainerComponent implements OnInit, OnDestroy {
 
   questionIndexReference: Subscription;
+  quizIsOver: Subscription;
   quiz: Quiz;
   quizName: string = "";
   displayRoundInfo: string =  "";
@@ -31,7 +33,7 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     private router: Router, 
     private createQuizService: CreateQuizService,
     private playQuizService: PlayQuizService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -39,8 +41,19 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
 
     this.questionIndexReference = this.playQuizService.questionIndexReference
     .subscribe(index => {
+      this.questionType = 0;
       this.questionIndex = index;
-      this.getNextQuestion();
+          
+      setTimeout(() => {
+        this.getNextQuestion();
+      }, 200)
+    })
+
+    this.quizIsOver = this.playQuizService.quizIsOver
+    .subscribe(isOver => {
+      if(isOver === true) {
+        this.router.navigate(["/answers/quiz/", this.quiz.id])
+      }
     })
 
     this.quiz = this.route.snapshot.data["quiz"];
@@ -56,26 +69,16 @@ export class PlayQuizContainerComponent implements OnInit, OnDestroy {
     this.displayRound();
     //this.playQuizService.rounds = this.rounds;
     this.playQuizService.addPropertyToRounds(this.rounds);
+    this.playQuizService.questionsLength = this.questions.length;
+
+    console.log(this.questions);
 
   }
 
   getNextQuestion() {
-    const questionsLength = this.questions.length;
-    let questionIndex = this.questionIndex;
-    console.log(questionIndex + " AND " + questionsLength);
-
-    if(questionsLength == 2 && questionsLength != questionIndex || questionIndex < questionsLength - 1) {
-      this.question = this.questions[questionIndex];
-      this.questionType = this.question.questionType;
-      this.displayRound();
-      console.log(questionIndex + " AND " + questionsLength);
-    } else {
-      console.log(questionIndex + " AND " + questionsLength);
-      this.playQuizService.calculateScore();
-      this.router.navigate(["/answers/quiz/", this.quiz.id])
-      console.log(this.questions);
-    }
-
+    this.question = this.questions[this.questionIndex];
+    this.questionType = this.question.questionType;
+    this.displayRound();
   }
 
   displayRound() {

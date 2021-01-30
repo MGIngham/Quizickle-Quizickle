@@ -22,7 +22,9 @@ export class PlayQuizService {
 
     score: number = 0;
     answers: Answer[] = [];
+    questionsLength: number;
     quizIsOver: Subject<boolean> = new Subject<boolean>();
+    qType: number;
 
     questionIndex: number = 0;
     questionIndexReference: Subject<number> = new Subject<number>();
@@ -36,7 +38,6 @@ export class PlayQuizService {
 
         let fullAnswer: Answer;
         let answerIsCorrect: boolean;
-        let finalScore: number;
 
         if(answer.toUpperCase() === correctAnswer.toUpperCase()) {
             this.score ++;
@@ -47,8 +48,12 @@ export class PlayQuizService {
             answerIsCorrect = false;
         }
 
-        this.questionIndex ++;
-        this.questionIndexReference.next(this.questionIndex);
+        if(this.questionsLength != this.questionIndex + 1) {
+            this.questionIndex ++;
+            this.questionIndexReference.next(this.questionIndex);
+        } else {
+            this.quizIsOver.next(true);
+        }
 
         fullAnswer = new Answer(
             question.roundNumber,
@@ -59,11 +64,6 @@ export class PlayQuizService {
         )
 
         this.answers.push(fullAnswer);
-    }
-
-    calculateScore() {
-        this.quizIsOver.next(true);
-        console.log("THE QUIZ IS OVER");
     }
 
     getQuizColour(hexCode: string) {

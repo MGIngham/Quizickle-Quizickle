@@ -1,12 +1,16 @@
 <div [formGroup]="questionForm" class="form-group">
-    <label>True</label>
-    <input
-            type="radio"
-            formControlName="isTrueFalse"
-            [value]=true>
-    <label>False</label>
-    <input 
-            type="radio"
-            formControlName="isTrueFalse"
-            [value]=false>
+<div class="form-control">
+        <label>True</label>
+        <input
+                type="radio"
+                formControlName="isTrueFalse"
+                [value]=true>
+</div>
+<div class="form-control">
+        <label>False</label>
+        <input 
+                type="radio"
+                formControlName="isTrueFalse"
+                [value]=false>
+</div>
 </div>

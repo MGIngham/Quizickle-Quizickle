@@ -4,10 +4,10 @@
     <form [formGroup]="answerForm">
         <div *ngFor="let option of options" class="form-group">
             <label>{{option}}</label>
-            <input
-            type="radio"
-            [value]="option"
-            formControlName="optionsMultipleChoice">
+                <input
+                type="radio"
+                [value]="option"
+                formControlName="optionsMultipleChoice">
         </div>
     </form>
 </div>

@@ -21,12 +21,12 @@ export class QuestionMultipleChoiceComponent implements OnInit {
   ngOnInit(): void {
 
     this.answerForm = new FormGroup({
-      "optionsMultipleChoice": new FormControl()
+      "optionsMultipleChoice": new FormControl("")
     })
 
     this.options = this.shuffleOptions(this.question);
 
-    this.selectAnswer();
+  this.selectAnswer();
 
   }
 
@@ -56,17 +56,16 @@ export class QuestionMultipleChoiceComponent implements OnInit {
     return options;
   }
 
-  selectAnswer() {
-
-    this.answerForm.reset();
+selectAnswer() {
 
     this.answerForm.get('optionsMultipleChoice').valueChanges
     .subscribe(val => {
       console.log(val);
+    
       this.playQuizService.evaluateTextAnswer(val, this.question.answerText, this.question);
+
     })
-
-
+    
   }
 
 }

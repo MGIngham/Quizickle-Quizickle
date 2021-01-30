@@ -27,7 +27,8 @@ export class DisplayAnswersComponent implements OnInit {
     this.answers = this.playQuizService.answers;
     this.rounds = this.playQuizService.rounds;
 
-    console.log(this.rounds[0])
+    console.log(this.rounds);
+    console.log(this.playQuizService.answers);
 
   }
 

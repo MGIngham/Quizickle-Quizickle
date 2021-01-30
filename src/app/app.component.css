@@ -1,6 +1,7 @@
 
 .content-container {
     height: 85%;
+    overflow: scroll;
 }
 
 .container-main {

@@ -23,20 +23,18 @@ export class QuestionTrueFalseComponent implements OnInit {
       "optionsTrueFalse": new FormControl("")
     })
 
-    this.selectAnswer();
+
+    this.selectAnswer()
   }
 
   selectAnswer() {
-
+    
+  this.answerFormTrueFalse.get('optionsTrueFalse').valueChanges
+  .subscribe(val => {
     let correctAnswer = this.question.isTrueFalse.toString();
-
-    this.answerFormTrueFalse.get('optionsTrueFalse').valueChanges
-    .subscribe(val => {
-      let value = val.toString();
-      console.log(val);
-      this.playQuizService.evaluateTextAnswer(value, correctAnswer, this.question);
-    })
-
+    let value = val.toString();
+    console.log(this.answerFormTrueFalse.get('optionsTrueFalse').value);
+    this.playQuizService.evaluateTextAnswer(value, correctAnswer, this.question);
+  })
   }
-
 }
