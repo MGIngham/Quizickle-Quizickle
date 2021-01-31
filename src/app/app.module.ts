@@ -29,6 +29,7 @@ import { QuestionTextComponent } from './play-quiz/questions/question-text/quest
 import { QuestionMultipleChoiceComponent } from './play-quiz/questions/question-multiple-choice/question-multiple-choice.component';
 import { QuestionTrueFalseComponent } from './play-quiz/questions/question-true-false/question-true-false.component';
 import { DisplayAnswersComponent } from './play-quiz/display-answers/display-answers.component';
+import { SelectQuizComponent } from './play-quiz/select-quiz/select-quiz.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DisplayAnswersComponent } from './play-quiz/display-answers/display-ans
     QuestionTextComponent,
     QuestionMultipleChoiceComponent,
     QuestionTrueFalseComponent,
-    DisplayAnswersComponent
+    DisplayAnswersComponent,
+    SelectQuizComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+<div class="row" *ngFor="let quiz of quizes">
+    <a (click)="selectQuiz(quiz.id)">
+        <div class="col-xs-10 singleQuizContainer" [ngStyle]="{'background-color': quiz.backgroundColour}">
+
+                <span >{{ quiz.quizName }}</span>
+
+        </div>
+    </a>
+</div>

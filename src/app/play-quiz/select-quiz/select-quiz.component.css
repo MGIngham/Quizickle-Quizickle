@@ -1,0 +1,13 @@
+span {
+    color: #fff;
+    font-weight: 200;
+}
+
+.singleQuizContainer {
+    margin: 10px;
+    padding: 5px;
+}
+
+a :hover {
+    cursor: pointer;
+}

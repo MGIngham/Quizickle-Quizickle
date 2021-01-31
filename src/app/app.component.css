@@ -4,8 +4,13 @@
     overflow: scroll;
 }
 
+.container {
+    overflow: auto;
+    height: 90%;
+}
+
 .container-main {
-    min-height: 85%;
+    min-height: 100%;
     margin: 0;
 }
 

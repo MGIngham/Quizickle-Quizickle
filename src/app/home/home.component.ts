@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/create-quiz']);
   }
 
+  nagivateToSelectQuiz() {
+    this.router.navigate(['/play']);
+  }
+
   navigateToPlayQuiz() {
 
   }

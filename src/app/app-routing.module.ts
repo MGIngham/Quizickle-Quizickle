@@ -8,6 +8,8 @@ import { PlayQuizContainerComponent } from './play-quiz/play-quiz-container/play
 import { GetQuestionsResolverService } from './shared/services/get-questions-resolver.service';
 import { GetRoundsResolverService } from './shared/services/get-rounds-resolver.service';
 import { GetQuizResolverService } from './shared/services/get-quiz-resolver.service';
+import { SelectQuizComponent } from './play-quiz/select-quiz/select-quiz.component';
+import { GetQuizesResolverService } from './shared/services/get-quizes-resolver.service';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'create-quiz', component: InitialFormComponent },
     { path: "answers/quiz/:id", component: DisplayAnswersComponent },
     { path: 'quiz-builder/:id', component: QuizBuilderContainerComponent },
+    { path: 'play', component: SelectQuizComponent, resolve: {quizes: GetQuizesResolverService} },
     { path: 'play/quiz/:id', component: PlayQuizContainerComponent, 
                             resolve: {
                                 quiz: GetQuizResolverService,

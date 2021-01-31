@@ -27,6 +27,13 @@ export class CentralDataProvider {
         )
     }
 
+    getQuizes() {
+        return this.http.get<Quiz[]>(this.baseUri + "quizs/")
+        .pipe(
+            catchError(this.handleError)
+        )
+    }
+
     getRoundsByQuizId(id: string) {
         return this.http.get<Round[]>(this.baseUri + "rounds/quiz/" + id)
         .pipe(
