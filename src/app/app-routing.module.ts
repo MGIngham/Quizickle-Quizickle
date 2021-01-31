@@ -10,12 +10,13 @@ import { GetRoundsResolverService } from './shared/services/get-rounds-resolver.
 import { GetQuizResolverService } from './shared/services/get-quiz-resolver.service';
 import { SelectQuizComponent } from './play-quiz/select-quiz/select-quiz.component';
 import { GetQuizesResolverService } from './shared/services/get-quizes-resolver.service';
+import { AuthComponent } from './auth/auth/auth.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'create-quiz', component: InitialFormComponent },
-    { path: "answers/quiz/:id", component: DisplayAnswersComponent },
+    { path: 'answers/quiz/:id', component: DisplayAnswersComponent },
     { path: 'quiz-builder/:id', component: QuizBuilderContainerComponent },
     { path: 'play', component: SelectQuizComponent, resolve: {quizes: GetQuizesResolverService} },
     { path: 'play/quiz/:id', component: PlayQuizContainerComponent, 
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
                                 rounds: GetRoundsResolverService
                             } 
                         },
+    { path: 'auth', component: AuthComponent }
 ]
 
 @NgModule({

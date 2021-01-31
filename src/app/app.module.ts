@@ -30,6 +30,7 @@ import { QuestionMultipleChoiceComponent } from './play-quiz/questions/question-
 import { QuestionTrueFalseComponent } from './play-quiz/questions/question-true-false/question-true-false.component';
 import { DisplayAnswersComponent } from './play-quiz/display-answers/display-answers.component';
 import { SelectQuizComponent } from './play-quiz/select-quiz/select-quiz.component';
+import { AuthComponent } from './auth/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { SelectQuizComponent } from './play-quiz/select-quiz/select-quiz.compone
     QuestionMultipleChoiceComponent,
     QuestionTrueFalseComponent,
     DisplayAnswersComponent,
-    SelectQuizComponent
+    SelectQuizComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
